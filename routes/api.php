@@ -18,5 +18,6 @@ use Illuminate\Support\Facades\Route;
 Route::prefix('pembayaran')->group(function(){
     Route::post('/tambahPembayaran',[PaymentsApiController::class,'tambahPembayaran']);
     Route::get('/getAllPembayaran',[PaymentsApiController::class,'getAllPembayaran']);
+    Route::get('/getTotalCash',[PaymentsApiController::class,'getTotalCash']);
     Route::delete('/hapusPembayaran/{id}',[PaymentsApiController::class,'deletePembayaran']);
 });

@@ -1,7 +1,8 @@
 import './bootstrap';
 import * as Dashboard from "./dashboard.js";
 
-$(document).ready(function () {
+$(document).ready(async function () {
     console.log('OK');
     Dashboard.createDataTable()
+    await Dashboard.updateTotalCash()
 })

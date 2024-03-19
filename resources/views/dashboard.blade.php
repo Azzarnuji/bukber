@@ -1,28 +1,28 @@
 @extends('layout')
 @section('content')
-    <div class="container mx-auto h-full w-full my-10 lg:p-5 p-10">
-        <div class="flex lg:flex-row flex-col justify-center items-start w-full h-full gap-10">
+    <div class="container w-full h-full p-10 mx-auto my-10 lg:p-5">
+        <div class="flex flex-col items-start justify-center w-full h-full gap-10 lg:flex-row">
             <div class="contentLeft lg:w-full">
-                <h1 class="text-2xl font-bold mb-2">Tambah Data Pembayaran</h1>
+                <h1 class="mb-2 text-2xl font-bold">Tambah Data Pembayaran</h1>
 
                 <form id="formPembayaran">
-                    <label class="form-control w-full lg:max-w-lg max-w-xs">
+                    <label class="w-full max-w-xs form-control lg:max-w-lg">
                         <div class="label">
-                            <span class="label-text text-lg">Nama Pembayar</span>
+                            <span class="text-lg label-text">Nama Pembayar</span>
                         </div>
-                        <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xl"
+                        <input type="text" placeholder="Type here" class="w-full max-w-xl input input-bordered"
                             id="namaPembayar" required />
                     </label>
-                    <label class="form-control w-full lg:max-w-lg max-w-xs">
+                    <label class="w-full max-w-xs form-control lg:max-w-lg">
                         <div class="label">
-                            <span class="label-text text-lg">Jumlah Bayar</span>
+                            <span class="text-lg label-text">Jumlah Bayar</span>
                         </div>
-                        <input type="text" placeholder="Type here" class="input input-bordered w-full max-w-xl"
+                        <input type="text" placeholder="Type here" class="w-full max-w-xl input input-bordered"
                             id="jumlahBayar" required />
                     </label>
-                    <label class="form-control w-full lg:max-w-lg max-w-xs">
+                    <label class="w-full max-w-xs form-control lg:max-w-lg">
                         <div class="label">
-                            <span class="label-text text-lg">Metode Bayar</span>
+                            <span class="text-lg label-text">Metode Bayar</span>
                         </div>
                         <select class="select select-bordered" id="metodeBayar" required>
                             <option disabled selected value="">Pilih Salah Satu</option>
@@ -30,27 +30,28 @@
                             <option value="cash">Cash (COD)</option>
                         </select>
                     </label>
-                    <label class="form-control w-full lg:max-w-lg max-w-xs" id="buktiBayarField">
+                    <label class="w-full max-w-xs form-control lg:max-w-lg" id="buktiBayarField">
                         <div class="label">
-                            <span class="label-text text-lg">Bukti Bayar</span>
+                            <span class="text-lg label-text">Bukti Bayar</span>
                         </div>
-                        <input type="file" class="file-input file-input-bordered w-full lg:max-w-lg max-w-xs"
+                        <input type="file" class="w-full max-w-xs file-input file-input-bordered lg:max-w-lg"
                             id="buktiBayar" />
 
                     </label>
-                    <div class="flex lg:justify-start justify-end my-10">
+                    <div class="flex justify-end my-10 lg:justify-start">
 
                         <button class="btn btn-primary" id="btnSimpan" type="submit">Simpan Data</button>
                     </div>
                 </form>
             </div>
             <div class="contentRight lg:w-[100vw] w-full">
-                <h1 class="text-2xl font-bold mb-2">Daftar List Sudah Pembayaran</h1>
+                <h1 class="mb-2 text-2xl font-bold">Daftar List Sudah Pembayaran</h1>
+                <h2 class="mb-2 text-2xl">Total Uang Terkumpul: Rp.<span id="totalCash"></span></h2>
 
                 <div class="overflow-x-auto">
                     <table class="table table-lg" id="tablePembayaran">
                         <!-- head -->
-                        <thead class="bg-success text-white text-base">
+                        <thead class="text-base text-white bg-success">
                             <tr>
                                 <th>No</th>
                                 <th>Nama</th>
@@ -69,9 +70,9 @@
         </div>
     </div>
     <dialog id="imageModal" class="modal">
-        <div class="w-screen h-screen bg-black opacity-45 absolute"></div>
+        <div class="absolute w-screen h-screen bg-black opacity-45"></div>
         <div class="modal-box w-96">
-            <div class="modal-action mb-2">
+            <div class="mb-2 modal-action">
                 <form method="dialog">
                     <!-- if there is a button in form, it will close the modal -->
                     <button class="btn close">X</button>

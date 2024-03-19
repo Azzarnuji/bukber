@@ -53,4 +53,13 @@ class PaymentsApiController extends Controller
             DB::rollBack();
         }
     }
+
+    public function getTotalCash(){
+        $data = PaymentsModel::all()->sum(function($data){
+            $getOnlyNumber = intval(preg_replace('/[^0-9]+/', '', $data->jumlah_bayar));
+            return (int)$getOnlyNumber;
+        });
+
+        return response()->json($this->responseTemplate(200, "Get Sucecesss",['totalCash'=>number_format($data,0,',','.')]),200);
+    }
 }

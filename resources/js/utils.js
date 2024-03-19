@@ -15,7 +15,7 @@ export const action = (id, eventListerner, callback) => {
     $(`#${id}`).on(eventListerner, (event) => callback(event))
 }
 
-export const postData = async (url, method, config) => {
+export const ajax = async (url, method, config) => {
     return await $.ajax({
         url: url,
         method: method,

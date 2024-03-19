@@ -1,4 +1,4 @@
-import { action, askBeforeExecution, getValueField, postData, setValueField } from "./utils";
+import { action, askBeforeExecution, getValueField, ajax, setValueField } from "./utils";
 
 const TablePembayaran = $('#tablePembayaran')
 let TablePembayaranInstance;
@@ -35,8 +35,16 @@ const createDataTable = () => {
     return TablePembayaranInstance
 }
 
+const getTotalCash = async () => {
+    const response = await ajax('/api/pembayaran/getTotalCash', 'GET')
+    if (response.httpCode === 200) {
+        return response.data.totalCash
+    }
+}
 
-
+const updateTotalCash = async () => {
+    $("#totalCash").text(await getTotalCash())
+}
 const deletePembayaran = async (id) => {
     askBeforeExecution('Apakah anda yakin ingin menghapus data ini?', () => {
         Swal.fire({
@@ -47,7 +55,7 @@ const deletePembayaran = async (id) => {
             allowEnterKey: false,
             didOpen: async () => {
                 Swal.showLoading()
-                const response = await postData(`/api/pembayaran/hapusPembayaran/${id}`, 'DELETE')
+                const response = await ajax(`/api/pembayaran/hapusPembayaran/${id}`, 'DELETE')
                 if (response.httpCode === 200) {
                     Swal.close()
                     Swal.fire({
@@ -55,6 +63,7 @@ const deletePembayaran = async (id) => {
                         text: response.message
                     })
                     TablePembayaranInstance.ajax.reload()
+                    await updateTotalCash()
                 }
             }
         })
@@ -92,7 +101,7 @@ action('formPembayaran', 'submit', async (event) => {
         allowEnterKey: false,
         didOpen: async () => {
             Swal.showLoading()
-            const response = await postData('/api/pembayaran/tambahPembayaran', 'POST', {
+            const response = await ajax('/api/pembayaran/tambahPembayaran', 'POST', {
                 processData: false,
                 cache: false,
                 contentType: false,
@@ -107,6 +116,7 @@ action('formPembayaran', 'submit', async (event) => {
                 })
 
                 TablePembayaranInstance.ajax.reload()
+                await updateTotalCash()
                 setValueField('namaPembayar', null)
                 setValueField('metodeBayar', null)
                 setValueField('jumlahBayar', null)
@@ -131,5 +141,7 @@ $(document).on('click', 'img[data-toggle="modal"]', function () {
 window.deletePembayaran = deletePembayaran
 export {
     createDataTable,
-    deletePembayaran
+    deletePembayaran,
+    getTotalCash,
+    updateTotalCash
 }
