@@ -2,48 +2,50 @@
 @section('content')
     <div class="container w-full h-full p-10 mx-auto my-10 lg:p-5">
         <div class="flex flex-col items-start justify-center w-full h-full gap-10 lg:flex-row">
-            <div class="contentLeft lg:w-full">
-                <h1 class="mb-2 text-2xl font-bold">Tambah Data Pembayaran</h1>
+            @if (!request()->get('type') == 'view')
+                <div class="contentLeft lg:w-full">
+                    <h1 class="mb-2 text-2xl font-bold">Tambah Data Pembayaran</h1>
 
-                <form id="formPembayaran">
-                    <label class="w-full max-w-xs form-control lg:max-w-lg">
-                        <div class="label">
-                            <span class="text-lg label-text">Nama Pembayar</span>
-                        </div>
-                        <input type="text" placeholder="Type here" class="w-full max-w-xl input input-bordered"
-                            id="namaPembayar" required />
-                    </label>
-                    <label class="w-full max-w-xs form-control lg:max-w-lg">
-                        <div class="label">
-                            <span class="text-lg label-text">Jumlah Bayar</span>
-                        </div>
-                        <input type="text" placeholder="Type here" class="w-full max-w-xl input input-bordered"
-                            id="jumlahBayar" required />
-                    </label>
-                    <label class="w-full max-w-xs form-control lg:max-w-lg">
-                        <div class="label">
-                            <span class="text-lg label-text">Metode Bayar</span>
-                        </div>
-                        <select class="select select-bordered" id="metodeBayar" required>
-                            <option disabled selected value="">Pilih Salah Satu</option>
-                            <option value="transfer">Transfer</option>
-                            <option value="cash">Cash (COD)</option>
-                        </select>
-                    </label>
-                    <label class="w-full max-w-xs form-control lg:max-w-lg" id="buktiBayarField">
-                        <div class="label">
-                            <span class="text-lg label-text">Bukti Bayar</span>
-                        </div>
-                        <input type="file" class="w-full max-w-xs file-input file-input-bordered lg:max-w-lg"
-                            id="buktiBayar" />
+                    <form id="formPembayaran">
+                        <label class="w-full max-w-xs form-control lg:max-w-lg">
+                            <div class="label">
+                                <span class="text-lg label-text">Nama Pembayar</span>
+                            </div>
+                            <input type="text" placeholder="Type here" class="w-full max-w-xl input input-bordered"
+                                id="namaPembayar" required />
+                        </label>
+                        <label class="w-full max-w-xs form-control lg:max-w-lg">
+                            <div class="label">
+                                <span class="text-lg label-text">Jumlah Bayar</span>
+                            </div>
+                            <input type="text" placeholder="Type here" class="w-full max-w-xl input input-bordered"
+                                id="jumlahBayar" required />
+                        </label>
+                        <label class="w-full max-w-xs form-control lg:max-w-lg">
+                            <div class="label">
+                                <span class="text-lg label-text">Metode Bayar</span>
+                            </div>
+                            <select class="select select-bordered" id="metodeBayar" required>
+                                <option disabled selected value="">Pilih Salah Satu</option>
+                                <option value="transfer">Transfer</option>
+                                <option value="cash">Cash (COD)</option>
+                            </select>
+                        </label>
+                        <label class="w-full max-w-xs form-control lg:max-w-lg" id="buktiBayarField">
+                            <div class="label">
+                                <span class="text-lg label-text">Bukti Bayar</span>
+                            </div>
+                            <input type="file" class="w-full max-w-xs file-input file-input-bordered lg:max-w-lg"
+                                id="buktiBayar" />
 
-                    </label>
-                    <div class="flex justify-end my-10 lg:justify-start">
+                        </label>
+                        <div class="flex justify-end my-10 lg:justify-start">
 
-                        <button class="btn btn-primary" id="btnSimpan" type="submit">Simpan Data</button>
-                    </div>
-                </form>
-            </div>
+                            <button class="btn btn-primary" id="btnSimpan" type="submit">Simpan Data</button>
+                        </div>
+                    </form>
+                </div>
+            @endif
             <div class="contentRight lg:w-[100vw] w-full">
                 <h1 class="mb-2 text-2xl font-bold">Daftar List Sudah Pembayaran</h1>
                 <h2 class="mb-2 text-2xl">Total Uang Terkumpul: Rp.<span id="totalCash"></span></h2>
