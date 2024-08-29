@@ -5,7 +5,7 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
-        <title>Bukber | Pembayaran</title>
+        <title>Haul Akbar | Pembayaran</title>
         <script src="https://code.jquery.com/jquery-3.7.1.min.js"
             integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
         <script src="https://cdn.datatables.net/2.0.2/js/dataTables.js"></script>
@@ -16,8 +16,8 @@
     </head>
 
     <body>
-        <div class="navbar bg-base-100 shadow-lg">
-            <a class="btn btn-ghost text-xl">Yapida</a>
+        <div class="shadow-lg navbar bg-base-100">
+            <a class="text-xl btn btn-ghost">Yapida</a>
         </div>
         <main>
             @yield('content')
